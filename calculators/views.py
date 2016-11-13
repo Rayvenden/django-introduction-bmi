@@ -33,7 +33,7 @@ def view_main_calories(request):
     )
 
 
-def get_default_contex():
+def get_default_context():
     """Funkcja zwracająca podstawowy kontekst. """
     return {"sex": ("kobieta", "mężczyzna")}
 
@@ -41,13 +41,13 @@ def get_default_contex():
 def view_main_bmi(request):
     """Podstawowy widok kalkulatora bmi."""
 
-    contex = get_default_contex()
-    contex["error"] = request.session.get("error")
+    context = get_default_context()
+    context["error"] = request.session.get("error")
 
     return render(
         request,
         "calculators/bmi.html",
-        contex
+        context
     )
 
 
@@ -112,7 +112,7 @@ def view_count_bmi(request):
 
 def view_bmi_result(request):
     """Widok zawierający obliczony wynik bmi dla użytkownika."""
-    context = get_default_contex()
+    context = get_default_context()
     context.update({
         "bmi_result": request.session["bmi_result"],
         "weight_type": request.session["weight_type"],
